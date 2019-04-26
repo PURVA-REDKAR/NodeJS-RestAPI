@@ -6,6 +6,7 @@
     "start": "node app.js"
   },
   "dependencies": {
+    "companydata": "file:companydata",
     "express": "3.2.6",
     "jshtml": "*"
   }
