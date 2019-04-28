@@ -10,3 +10,9 @@ exports.list = function(req, res){
 	console.log(datalayer.getAllDepartment("pr3044"));
   res.send("user");
 };
+
+
+exports.gets = function(req, res){
+	//console.log(datalayer.getAllDepartment("pr3044"));
+  res.send("gets");
+};

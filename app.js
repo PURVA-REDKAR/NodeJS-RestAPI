@@ -6,6 +6,9 @@
 var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
+  , department = require('./routes/department')
+  , employee = require('./routes/employee')
+  , timecard = require('./routes/timecard')
   , http = require('http')
   , path = require('path');
 
@@ -15,10 +18,6 @@ bodyParser = require("body-parser"),
 urlEncodedParser = bodyParser.urlencoded({extended: false}),
 jsonParser = bodyParser.json();
 
-var datalayer = require("companydata");
-var Department = require("companydata").Department;
-var Employee = require("companydata").Employee;
-var Timecard = require("companydata").Timecard;
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -33,17 +32,22 @@ app.use(express.urlencoded({extended:false}));
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-
-
-
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+
 app.get('/CompanyServices', routes.index);
-app.get('/CompanyServices/users', user.list);
+
+app.get('/CompanyServices/department', department.get);
+app.get('/CompanyServices/departments', department.getAll);
+app.get('/CompanyServices/employee', employee.get);
+app.get('/CompanyServices/employees', employee.getAll);
+app.get('/CompanyServices/timecard', timecard.get);
+app.get('/CompanyServices/timecards', timecard.getAll);
+//app.post('/CompanyServices/department', department.post);
+//app.delete('/CompanyServices/department', department.delAll);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
