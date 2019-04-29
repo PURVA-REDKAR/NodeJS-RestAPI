@@ -10,10 +10,14 @@ var express = require('express')
   , employee = require('./routes/employee')
   , timecard = require('./routes/timecard')
   , http = require('http')
-  , path = require('path');
+  , path = require('path')
+  , util = require('./lib/utility');
+
 
 var app = express();
 
+
+ 
 bodyParser = require("body-parser"),
 urlEncodedParser = bodyParser.urlencoded({extended: false}),
 jsonParser = bodyParser.json();
@@ -31,7 +35,6 @@ app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
-
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
@@ -46,7 +49,11 @@ app.get('/CompanyServices/employee', employee.get);
 app.get('/CompanyServices/employees', employee.getAll);
 app.get('/CompanyServices/timecard', timecard.get);
 app.get('/CompanyServices/timecards', timecard.getAll);
-//app.post('/CompanyServices/department', department.post);
+
+
+
+app.post('/CompanyServices/department', util.valdepartment,department.post);
+app.put('/CompanyServices/department', department.put);
 //app.delete('/CompanyServices/department', department.delAll);
 
 http.createServer(app).listen(app.get('port'), function(){
