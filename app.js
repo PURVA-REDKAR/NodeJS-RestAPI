@@ -56,6 +56,9 @@ app.post('/CompanyServices/department'  , util.valDepartment       , department.
 app.put('/CompanyServices/department'   , util.valDepartmentUpdate , department.put);
 app.delete('/CompanyServices/department', util.delDepart           , department.delAll);
 
+
+app.delete('/CompanyServices/company'                              , department.delCompany);
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });

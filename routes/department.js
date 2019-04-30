@@ -1,5 +1,5 @@
 /**
- * S File for Department 
+ * Service Layer File for Department 
  */
 var Department = require("companydata").Department;
 var datalayer = require("companydata");
@@ -78,7 +78,46 @@ exports.put = function(req, res){
 	res.send("could not update");
 
 };
+
+
 exports.delAll = function(req, res){
+	let response ={};
+	let company = req.query.company;
+	let dept_id = req.query.dept_id;
 	
-	  res.send("delete");
+	let data = datalayer.deleteDepartment(company,dept_id);
+	if(data <0){
+		
+		response["error"] = "could not Delete";
+		
+		res.type("json")
+		   .send(JSON.stringify(response));
+		
+	}
+	
+	response["Success"] = "Department "+dept_id+" from "+company+" deleted.";
+	res.type("json")
+	   .send(JSON.stringify(response));
+	
+};
+
+
+exports.delCompany = function(req, res){
+	let response ={};
+	let company = req.query.company;
+	
+	let data = datalayer.deleteCompany(company);
+	if(data <0){
+		
+		response["error"] = "could not Delete";
+		
+		res.type("json")
+		   .send(JSON.stringify(response));
+		
+	}
+	
+	response["Success"] = company+" deleted.";
+	res.type("json")
+	   .send(JSON.stringify(response));
+	
 };
