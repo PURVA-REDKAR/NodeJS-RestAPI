@@ -43,18 +43,18 @@ if ('development' == app.get('env')) {
 
 app.get('/CompanyServices', routes.index);
 
-app.get('/CompanyServices/department', department.get);
+app.get('/CompanyServices/department' , department.get);
 app.get('/CompanyServices/departments', department.getAll);
-app.get('/CompanyServices/employee', employee.get);
-app.get('/CompanyServices/employees', employee.getAll);
-app.get('/CompanyServices/timecard', timecard.get);
-app.get('/CompanyServices/timecards', timecard.getAll);
+app.get('/CompanyServices/employee'   , employee.get);
+app.get('/CompanyServices/employees'  , employee.getAll);
+app.get('/CompanyServices/timecard'   , timecard.get);
+app.get('/CompanyServices/timecards'  , timecard.getAll);
 
 
 
-app.post('/CompanyServices/department', util.valdepartment,department.post);
-app.put('/CompanyServices/department', department.put);
-//app.delete('/CompanyServices/department', department.delAll);
+app.post('/CompanyServices/department'  , util.valDepartment       , department.post);
+app.put('/CompanyServices/department'   , util.valDepartmentUpdate , department.put);
+app.delete('/CompanyServices/department', util.delDepart           , department.delAll);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

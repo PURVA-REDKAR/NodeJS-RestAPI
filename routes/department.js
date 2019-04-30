@@ -8,9 +8,8 @@ var datalayer = require("companydata");
 exports.get = function(req, res){
 	let company = req.query.company;
 	let dept_id = req.query.dept_id;
-	let data = datalayer.getDepartment(company,dept_id)
+	let data = datalayer.getDepartment(company,dept_id);
 	if(data == null){
-	//	let error = new Error('company'+company+' or depat '+dept_id+' does not exists');
 		res.send(JSON.stringify("no department"));
 	}
 	res.send(data);
@@ -31,15 +30,20 @@ exports.post = function(req, res){
 			 company   : req.body.company,
 			 dept_name : req.body.dept_name,
 			 location  : req.body.location,
-			 dept_no   : req.body.dept_no,
+			 dept_no   : req.body.dept_no
 		};
 	
 	let data = datalayer.insertDepartment(Department);
 	if(data.dept_id < 0){
-		res.send("could not insert");	
+		
+		const error ={
+			error : "Could not insert"	
+		}
+		 
+		res.type("json")
+		   .send(JSON.stringify(error));	
 	}
-	console.log(data.dept_id);
-	res.send(data);
+	res.type("json").send(JSON.stringify(data));
 
 };
 
@@ -48,11 +52,30 @@ exports.put = function(req, res){
 	
 	let company = req.body.company;
 	let dept_id = req.body.dept_id;
+	let data = datalayer.getDepartment(company,dept_id);
 	
+	if(req.body.dept_name){
+		data["dept_name"] = req.body.dept_name;
+	}
 	
-	console.log(company);
-	console.log(dept_id);
-	res.send("put");
+	if(req.body.dept_no){
+		data["dept_no"] = req.body.dept_no;
+	}
+	
+	if(req.body.location){
+	
+		data["location"] = req.body.location;
+	}
+	
+	let update = datalayer.updateDepartment(data);
+	
+	if(update){
+		
+		res.type("json")
+		   .send(JSON.stringify(data));
+	}
+	
+	res.send("could not update");
 
 };
 exports.delAll = function(req, res){
