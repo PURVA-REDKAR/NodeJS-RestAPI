@@ -9,6 +9,7 @@
     "companydata": "file:companydata",
     "express": "3.2.6",
     "express-validator": "^5.3.1",
-    "jshtml": "*"
+    "jshtml": "*",
+    "moment": "^2.24.0"
   }
 }

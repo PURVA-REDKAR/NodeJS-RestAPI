@@ -11,9 +11,8 @@ var express = require('express')
   , timecard = require('./routes/timecard')
   , http = require('http')
   , path = require('path')
-  , util = require('./lib/utility');
-
-
+  , util = require('./lib/utility')
+  , moment = require('moment');
 var app = express();
 
 
@@ -61,6 +60,8 @@ app.post('/CompanyServices/employee'  , util.insertEmp            , employee.pos
 app.put('/CompanyServices/employee'   , util.valEmployeeUpdate    , employee.put);
 app.delete('/CompanyServices/employee'   , util.delEmp               , employee.delAll);
 
+app.post('/CompanyServices/timecard'  , util.insertTime            , timecard.post);
+app.put('/CompanyServices/timecard'  , util.updateTime            , timecard.put);
 
 app.delete('/CompanyServices/company'                              , department.delCompany);
 

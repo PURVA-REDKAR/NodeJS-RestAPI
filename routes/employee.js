@@ -37,6 +37,7 @@ exports.post = function(req, res){
 			mng_id     : req.body.mng_id,
 		};
 
+	
 	let data = datalayer.insertEmployee(Employee);
 	if(data.emp_id < 0){
 		
@@ -45,6 +46,7 @@ exports.post = function(req, res){
 		res.type("json")
 		   .send(JSON.stringify(response));	
 	}
+	
 	
 	    res.type("json")
 	        .send(JSON.stringify(data));
@@ -75,7 +77,7 @@ exports.put = function(req, res){
     
     if(req.body.job){
 		
-		data["job"] = req.body.hire_date;
+		data["job"] = req.body.job;
 	}
     if(req.body.dept_id){
 		
