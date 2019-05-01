@@ -72,10 +72,13 @@ exports.put = function(req, res){
 	if(update){
 		
 		res.type("json")
-		   .send(JSON.stringify(data));
+		   .send(JSON.stringify(update));
 	}
 	
-	res.send("could not update");
+	response["error"] = "could not Update Department";
+	 
+	res.type("json")
+	   .send(JSON.stringify(response));
 
 };
 
@@ -92,6 +95,7 @@ exports.delAll = function(req, res){
 		
 		res.type("json")
 		   .send(JSON.stringify(response));
+		return;
 		
 	}
 	

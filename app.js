@@ -24,7 +24,7 @@ jsonParser = bodyParser.json();
 
 
 // all environments
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 8080);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jshtml');
 app.use(express.favicon());
@@ -55,6 +55,11 @@ app.get('/CompanyServices/timecards'  , timecard.getAll);
 app.post('/CompanyServices/department'  , util.valDepartment       , department.post);
 app.put('/CompanyServices/department'   , util.valDepartmentUpdate , department.put);
 app.delete('/CompanyServices/department', util.delDepart           , department.delAll);
+
+
+app.post('/CompanyServices/employee'  , util.insertEmp            , employee.post);
+app.put('/CompanyServices/employee'   , util.valEmployeeUpdate    , employee.put);
+app.delete('/CompanyServices/employee'   , util.delEmp               , employee.delAll);
 
 
 app.delete('/CompanyServices/company'                              , department.delCompany);
