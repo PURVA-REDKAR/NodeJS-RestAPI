@@ -15,7 +15,8 @@ exports.get = function(req, res){
 		res.type("json")
 		   .send(JSON.stringify(response));
 	}
-	res.send(data);
+	res.type("json")
+	   .send(JSON.stringify(data));
 	
 };
 

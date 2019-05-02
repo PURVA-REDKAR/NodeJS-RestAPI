@@ -3,16 +3,20 @@
  */
 var Department = require("companydata").Department;
 var datalayer = require("companydata");
-
+var response ={} ;
 
 exports.get = function(req, res){
 	let company = req.query.company;
 	let dept_id = req.query.dept_id;
 	let data = datalayer.getDepartment(company,dept_id);
 	if(data == null){
-		res.send(JSON.stringify("no department"));
+		response["error"] = "no department";
+		res.type("json")
+		   .send(JSON.stringify(response));
 	}
-	res.send(data);
+	res.type("json")
+	   .send(JSON.stringify(data));
+
 	
 };
 
@@ -43,7 +47,9 @@ exports.post = function(req, res){
 		res.type("json")
 		   .send(JSON.stringify(error));	
 	}
-	res.type("json").send(JSON.stringify(data));
+	
+	res.type("json")
+	   .send(JSON.stringify(data));
 
 };
 

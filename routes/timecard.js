@@ -12,14 +12,26 @@ exports.get = function(req, res){
 	let timecard_id = req.query.timecard_id;
 	let data = datalayer.getTimecard(timecard_id);
 	if(data == null){
-		res.send(JSON.stringify("no department"));
+		response["error"] = "No timecard for timecard_id"+timecard_id;
+		 
+		res.type("json")
+		   .send(JSON.stringify(response));	
 	}
 	res.send(data);
 };
 
 exports.getAll = function(req, res){
 	let emp_id = req.query.emp_id;
-	res.send(datalayer.getAllTimecard(emp_id));
+	let data = datalayer.getAllTimecard(emp_id);
+	if(data == null){
+		response["error"] = "Please check Empid";
+		 
+		res.type("json")
+		   .send(JSON.stringify(response));	
+	}
+	res.type("json")
+	   .send(JSON.stringify(data));	
+	
  
 };
 
@@ -36,7 +48,7 @@ exports.post = function(req, res){
 	
 	
 	let data = datalayer.insertTimecard(Timecard);
-	if(data.emp_id < 0){
+	if(data.timecard_id < 0){
 		
 		response["error"] = "could not insert Employee";
 		 
@@ -45,7 +57,7 @@ exports.post = function(req, res){
 	}
 	
 	    res.type("json")
-	        .send(JSON.stringify(Timecard));
+	        .send(JSON.stringify(data));
 };
 
 
@@ -74,10 +86,10 @@ exports.put = function(req, res){
 		   .send(JSON.stringify(update));
 	}
 	
-	response["error"] = "could not Update Department";
+	response["error"] = "could not Update timecard";
 	 
 	res.type("json")
-	   .send(JSON.stringify(response));
+	   .send(JSON.stringify(update));
 
 };
 
