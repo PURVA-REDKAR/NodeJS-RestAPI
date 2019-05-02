@@ -49,7 +49,7 @@ exports.post = function(req, res){
 	}
 	
 	res.type("json")
-	   .send(JSON.stringify(data));
+	   .send(data);
 
 };
 

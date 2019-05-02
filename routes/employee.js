@@ -23,7 +23,15 @@ exports.get = function(req, res){
 
 exports.getAll = function(req, res){
 	let company = req.query.company;
-	res.send(datalayer.getAllEmployee(company));
+	let data = datalayer.getAllEmployee(company);
+	if(data == null){
+		response["error"] = "Please check company";
+		 
+		res.type("json")
+		   .send(JSON.stringify(response));	
+	}
+	res.type("json")
+	   .send(JSON.stringify(data));	
  
 };
 

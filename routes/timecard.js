@@ -30,7 +30,7 @@ exports.getAll = function(req, res){
 		   .send(JSON.stringify(response));	
 	}
 	res.type("json")
-	   .send(JSON.stringify(data));	
+	   .send(data);	
 	
  
 };
