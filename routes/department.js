@@ -48,8 +48,10 @@ exports.post = function(req, res){
 		   .send(JSON.stringify(error));	
 	}
 	
+	
+	response["success"] = data;
 	res.type("json")
-	   .send(data);
+	   .send(JSON.stringify(response));
 
 };
 
@@ -76,9 +78,9 @@ exports.put = function(req, res){
 	let update = datalayer.updateDepartment(data);
 	
 	if(update){
-		
+		response["success"] = update;
 		res.type("json")
-		   .send(JSON.stringify(update));
+		   .send(JSON.stringify(response));
 	}
 	
 	response["error"] = "could not Update Department";
