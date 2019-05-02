@@ -56,12 +56,14 @@ app.put('/CompanyServices/department'   , util.valDepartmentUpdate , department.
 app.delete('/CompanyServices/department', util.delDepart           , department.delAll);
 
 
-app.post('/CompanyServices/employee'  , util.insertEmp            , employee.post);
-app.put('/CompanyServices/employee'   , util.valEmployeeUpdate    , employee.put);
+app.post('/CompanyServices/employee'     , util.insertEmp            , employee.post);
+app.put('/CompanyServices/employee'      , util.valEmployeeUpdate    , employee.put);
 app.delete('/CompanyServices/employee'   , util.delEmp               , employee.delAll);
 
 app.post('/CompanyServices/timecard'  , util.insertTime            , timecard.post);
-app.put('/CompanyServices/timecard'  , util.updateTime            , timecard.put);
+app.put('/CompanyServices/timecard'   , util.updateTime            , timecard.put);
+app.delete('/CompanyServices/timecard', util.delTime                , timecard.delAll);
+
 
 app.delete('/CompanyServices/company'                              , department.delCompany);
 

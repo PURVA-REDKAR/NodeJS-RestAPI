@@ -109,17 +109,26 @@ exports.delAll = function(req, res){
 exports.delCompany = function(req, res){
 	let response ={};
 	let company = req.query.company;
+	emp = datalayer.getAllEmployee( company );
+   
+	
+	for (let i = 0; i < emp.length; i++){
+	  
+		let time = datalayer.getAllTimecard( emp.emp_id );
+	    
+		for (let i = 0; i < time.length; i++){
+		  datalayer.deleteTimecard(time.timecard_id);  
+		}		
+		datalayer.deleteEmployee( emp.emp_id );		
+	}
 	
 	let data = datalayer.deleteCompany(company);
 	if(data <0){
 		
-		response["error"] = "could not Delete";
-		
+		response["error"] = "could not Delete";		
 		res.type("json")
-		   .send(JSON.stringify(response));
-		
-	}
-	
+		   .send(JSON.stringify(response));		
+	}			
 	response["Success"] = company+" deleted.";
 	res.type("json")
 	   .send(JSON.stringify(response));

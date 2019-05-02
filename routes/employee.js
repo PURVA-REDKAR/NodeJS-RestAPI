@@ -108,6 +108,12 @@ exports.delAll = function(req, res){
 	
 	let emp_id = req.query.emp_id;
 	
+	let time = datalayer.getAllTimecard( emp_id );
+	
+	for (let i = 0; i < time.length; i++){
+		  datalayer.deleteTimecard(time.timecard_id);  
+		}
+	
 	
 	let data = datalayer.deleteEmployee(emp_id);
 	if(data <0){
@@ -119,6 +125,8 @@ exports.delAll = function(req, res){
 		return;
 		
 	}
+		
+	
 	
 	response["Success"] = "Employee with emp_id : "+emp_id+"  deleted.";
 	res.type("json")

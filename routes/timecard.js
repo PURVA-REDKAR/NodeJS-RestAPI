@@ -4,6 +4,9 @@
 var Department = require("companydata").Timecard;
 var datalayer = require("companydata");
 
+var response ={} ;
+
+
 exports.get = function(req, res){
 	
 	let timecard_id = req.query.timecard_id;
@@ -47,11 +50,11 @@ exports.post = function(req, res){
 
 
 exports.put = function(req, res){
-	let moment = require('moment');
-	moment().format("yyyy-mm-dd hh:mm:ss");
+	
+	
 	let emp_id = req.body.emp_id;
-	let start_time = moment(req.body.start_time);
-	let end_time =  moment(req.body.end_time);
+	let start_time = req.body.start_time;
+	let end_time =  req.body.end_time;
 	let timecard_id = req.body.timecard_id;
 	let data = datalayer.getTimecard(timecard_id);
 	
@@ -80,5 +83,21 @@ exports.put = function(req, res){
 
 
 exports.delAll = function(req, res){
-	res.send("delete");
+let timecard_id = req.query.timecard_id;
+	
+	
+	let data = datalayer.deleteTimecard(timecard_id);
+	if(data < 0){
+		
+		response["error"] = "could not Delete time card with timecard_id"+timecard_id;
+		
+		res.type("json")
+		   .send(JSON.stringify(response));
+		return;
+		
+	}
+	
+	response["Success"] = "Time card with timecard_id : "+timecard_id+"  deleted.";
+	res.type("json")
+	   .send(JSON.stringify(response));
 };
