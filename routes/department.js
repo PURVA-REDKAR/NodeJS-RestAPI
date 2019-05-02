@@ -13,6 +13,7 @@ exports.get = function(req, res){
 		response["error"] = "no department";
 		res.type("json")
 		   .send(JSON.stringify(response));
+		return;
 	}
 	res.type("json")
 	   .send(data);
@@ -30,6 +31,7 @@ exports.getAll = function(req, res){
 		 
 		res.type("json")
 		   .send(JSON.stringify(response));	
+		return;
 	}
 	res.type("json")
 	   .send(data);	
@@ -54,7 +56,8 @@ exports.post = function(req, res){
 		}
 		 
 		res.type("json")
-		   .send(JSON.stringify(error));	
+		   .send(JSON.stringify(error));
+		return;
 	}
 	
 	
@@ -90,6 +93,7 @@ exports.put = function(req, res){
 		response["success"] = update;
 		res.type("json")
 		   .send(JSON.stringify(response));
+		return;
 	}
 	
 	response["error"] = "could not Update Department";
@@ -144,7 +148,8 @@ exports.delCompany = function(req, res){
 		
 		response["error"] = "could not Delete";		
 		res.type("json")
-		   .send(JSON.stringify(response));		
+		   .send(JSON.stringify(response));	
+		return;
 	}			
 	response["Success"] = company+" deleted.";
 	res.type("json")

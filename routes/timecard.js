@@ -16,6 +16,7 @@ exports.get = function(req, res){
 		 
 		res.type("json")
 		   .send(JSON.stringify(response));	
+		return;
 	}
 	res.send(data);
 };
@@ -28,6 +29,7 @@ exports.getAll = function(req, res){
 		 
 		res.type("json")
 		   .send(JSON.stringify(response));	
+		return;
 	}
 	res.type("json")
 	   .send(data);	
@@ -54,6 +56,7 @@ exports.post = function(req, res){
 		 
 		res.type("json")
 		   .send(JSON.stringify(response));	
+		return;
 	}
 	   
 	   response["success"] =data
@@ -85,6 +88,7 @@ exports.put = function(req, res){
 		response["success"] =update
 		res.type("json")
 		   .send(JSON.stringify(response));
+		return;
 	}
 	
 	response["error"] = "could not Update timecard";

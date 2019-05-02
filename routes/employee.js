@@ -14,6 +14,7 @@ exports.get = function(req, res){
 		response["error"] = "No Employee with emp_id :"+emp_id;
 		res.type("json")
 		   .send(JSON.stringify(response));
+		return;
 	}
 	res.type("json")
 	   .send(data);
@@ -29,6 +30,7 @@ exports.getAll = function(req, res){
 		 
 		res.type("json")
 		   .send(JSON.stringify(response));	
+		return;
 	}
 	res.type("json")
 	   .send(data);	
@@ -54,6 +56,7 @@ exports.post = function(req, res){
 		 
 		res.type("json")
 		   .send(JSON.stringify(response));	
+		return;
 	}
 	
 	response["success"] =data
