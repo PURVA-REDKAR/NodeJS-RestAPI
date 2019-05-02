@@ -15,7 +15,7 @@ exports.get = function(req, res){
 		   .send(JSON.stringify(response));
 	}
 	res.type("json")
-	   .send(JSON.stringify(data));
+	   .send(data);
 
 	
 };
@@ -24,7 +24,16 @@ exports.get = function(req, res){
 exports.getAll = function(req, res){
 	
 	let company = req.query.company;
-	res.send(datalayer.getAllDepartment(company));
+	let data =   datalayer.getAllDepartment(company)
+	if(data == null){
+		response["error"] = "Please check company";
+		 
+		res.type("json")
+		   .send(JSON.stringify(response));	
+	}
+	res.type("json")
+	   .send(data);	
+
  
 };
 

@@ -16,7 +16,7 @@ exports.get = function(req, res){
 		   .send(JSON.stringify(response));
 	}
 	res.type("json")
-	   .send(JSON.stringify(data));
+	   .send(data);
 	
 };
 
@@ -31,7 +31,7 @@ exports.getAll = function(req, res){
 		   .send(JSON.stringify(response));	
 	}
 	res.type("json")
-	   .send(JSON.stringify(data));	
+	   .send(data);	
  
 };
 
@@ -56,9 +56,9 @@ exports.post = function(req, res){
 		   .send(JSON.stringify(response));	
 	}
 	
-	
+	response["success"] =data
 	    res.type("json")
-	        .send(JSON.stringify(data));
+	        .send(JSON.stringify(response));
 };
 
 exports.put = function(req, res){
@@ -101,8 +101,9 @@ exports.put = function(req, res){
 	
  	if(update){
 		
+ 		response["success"] = update;
  		res.type("json")
-		   .send(JSON.stringify(data));
+		   .send(JSON.stringify(response));
  		return;
 	}
 	

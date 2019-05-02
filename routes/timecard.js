@@ -55,9 +55,10 @@ exports.post = function(req, res){
 		res.type("json")
 		   .send(JSON.stringify(response));	
 	}
-	
+	   
+	   response["success"] =data
 	    res.type("json")
-	        .send(JSON.stringify(data));
+	        .send(JSON.stringify(response));
 };
 
 
@@ -81,15 +82,15 @@ exports.put = function(req, res){
 	let update = datalayer.updateTimecard(data);
 	
 	if(update){
-		
+		response["success"] =update
 		res.type("json")
-		   .send(JSON.stringify(update));
+		   .send(JSON.stringify(response));
 	}
 	
 	response["error"] = "could not Update timecard";
 	 
 	res.type("json")
-	   .send(JSON.stringify(update));
+	   .send(JSON.stringify(response));
 
 };
 
